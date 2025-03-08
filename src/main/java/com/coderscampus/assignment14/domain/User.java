@@ -1,12 +1,16 @@
 package com.coderscampus.assignment14.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class User {
-    public Long userId;
-    public String username;
-    public String password;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+    private String username;
+    private String password;
 
     public Long getUserId() {
         return userId;
