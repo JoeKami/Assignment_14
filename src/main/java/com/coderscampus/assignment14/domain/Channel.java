@@ -8,10 +8,10 @@ import java.util.List;
 public class Channel {
     public String channelName;
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long channelId;
 
-    @OneToMany
+//    @OneToMany
     public List<User> users;
 
     public String getChannelName() {
