@@ -31,4 +31,41 @@ function connect (event) : void {
     event.preventDefault();
 }
 
+function onConnected(){
+    //subscribe to the public topic
+    stompClient.subscribe('/topic/public', onMessageRecieved);
+
+    // tell username to the server
+    stompClient.send('/app/chat.addUser',{}, JSON.stringify())
+}
+
+function onError() {
+    connectingElement.textContent = 'Could not connect to Websocket server. Please refresh this page and try again.';
+    connectingElement.style.color = 'red';
+}
+
+function onMessageRecieved(payload) {
+    
+
+}
+
+function sendMessage(event) {
+    var messageContent = messageInput.value.trim();
+    if (messageContent && stompClient) {
+        var chatMessage : {content: ..., sender:null, type: string} = {
+            sender: username,
+            content: messageContent,
+            type: 'CHAT'
+        };
+        stompClient.send(
+            '/app/chat.sendMessage',
+            {},
+            JSON.stringify(chatMessage)
+        );
+        messageInput.content = '';
+    }
+    event.preventDefault();
+}
+
 usernameForm.addEventListener(type: 'submit', connect, options: true);
+messageForm.addEventListener(type: 'submit', sendMessage, options: true);
