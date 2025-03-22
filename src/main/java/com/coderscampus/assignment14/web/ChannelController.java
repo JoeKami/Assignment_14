@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ChannelController {
 
+    @GetMapping("/")
+    public String home() {
+        return "register.html";
+    }
 
     @MessageMapping("/channel.sendMessage")
     @SendTo("/topic/public")
