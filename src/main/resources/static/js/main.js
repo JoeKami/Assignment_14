@@ -1,5 +1,7 @@
 'use strict';
 
+console.log('Client side javascript file is loaded!');
+
 var usernamePage = document.querySelector("#username-page");
 var chatPage = document.querySelector("#chat-page");
 var usernameForm = document.querySelector('#usernameForm');
@@ -61,8 +63,8 @@ function onMessageRecieved(payload) {
     } else {
         messageElement.classList.add('chat-message');
 
-        var avatarElement : Element = document.createElement('i');
-        var avatarText : Text = document.createTextNode(message.sender[0].toUpperCase());
+        var avatarElement = document.createElement('i');
+        var avatarText = document.createTextNode(message.sender[0].toUpperCase());
         avatarElement.appendChild(avatarText);
         avatarElement.style['background-color'] = getAvatarColor(message.sender);
 
@@ -104,11 +106,11 @@ function sendMessage(event) {
 }
 
 function getAvatarColor(messageSender) {
-    var hash : number = 0;
+    var hash = 0;
     for (var i = 0; i < messageSender.length; i++) {
         hash = 31 * hash + messageSender.charCodeAt(i);
     }
-    var index : number = Math.abs(hash % colors.length);
+    var index = Math.abs(hash % colors.length);
     return colors[index];
 
 }
